@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PianoChartView">
+        <attr name="lightKeysColor"      format="color" />
+        <attr name="darkKeysColor"       format="color" />
+        <attr name="checkedKeysColor"    format="color" />
+        <attr name="checkedKeys"         format="reference"/>
+        <attr name="size"                format="enum">
+            <enum name="Small" value="0"/>
+            <enum name="Large" value="1"/>
+        </attr>
+    </declare-styleable>
+</resources>

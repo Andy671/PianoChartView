@@ -1,4 +1,4 @@
-package com.kekstudio.pianochartview;
+package com.kekstudio.pianochartviewsample;
 
 import org.junit.Test;
 

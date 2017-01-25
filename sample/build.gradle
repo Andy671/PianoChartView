@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.0"
     defaultConfig {
-        applicationId "com.kekstudio.pianochartview"
+        applicationId "com.kekstudio.pianochartviewsample"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
@@ -25,5 +25,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.1.0'
+    compile project(':pianochartview')
+
     testCompile 'junit:junit:4.12'
 }
