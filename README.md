@@ -1,2 +1,2 @@
 # PianoChartView
-Piano Chart View for music theory / music apps
+Android Piano Chart View for music theory / music apps 
