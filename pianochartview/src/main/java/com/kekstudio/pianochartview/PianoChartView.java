@@ -41,7 +41,7 @@ public class PianoChartView extends View {
 
     private int  lightColor, darkColor, checkedColor;
 
-    private enum Size{
+    public enum Size{
         Small, Large
     }
     private Size size;

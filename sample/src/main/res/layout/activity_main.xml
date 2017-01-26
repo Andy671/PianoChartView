@@ -1,20 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
-
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:orientation="vertical"
+    android:gravity="center"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/activity_vertical_margin"
     tools:context="com.kekstudio.pianochartviewsample.MainActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp"
+        android:text="Small Keyboard (xml)"
+        android:textSize="26sp" />
+
     <com.kekstudio.pianochartview.PianoChartView
-        android:id="@+id/pianochartview"
-        custom:size="Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        custom:checkedKeys="@array/c_chord"
+        custom:size="Small"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp"
+        android:paddingTop="24dp"
+        android:text="Large Keyboard (xml)"
+        android:textSize="26sp" />
+
+    <com.kekstudio.pianochartview.PianoChartView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        custom:checkedKeys="@array/random_chord"
+        custom:checkedKeysColor="@android:color/white"
+        custom:lightKeysColor="@color/colorCustomLight"
+        custom:darkKeysColor="@color/colorCustomDark"
+        custom:size="Large" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp"
+        android:paddingTop="24dp"
+        android:text="Small Keyboard (code)"
+        android:textSize="26sp" />
+
+    <com.kekstudio.pianochartview.PianoChartView
+        android:id="@+id/piano_chart_view_small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-</RelativeLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp"
+        android:paddingTop="24dp"
+        android:text="Large Keyboard (code)"
+        android:textSize="26sp" />
+
+    <com.kekstudio.pianochartview.PianoChartView
+        android:id="@+id/piano_chart_view_large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+</LinearLayout>
+</ScrollView>
