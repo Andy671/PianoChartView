@@ -7,7 +7,7 @@
 Android Piano Chart View for music theory / music apps 
 
 ## Sample
-<iframe src='https://gfycat.com/ifr/FearfulClutteredCormorant' frameborder='0' scrolling='no' width='640' height='1138' allowfullscreen></iframe>
+![](http://i.giphy.com/vuaHfrpkTbwOc.gif)
 
 ## Installation
 
@@ -26,14 +26,59 @@ Add the JitPack repository to your build file
 Add the dependency
 ```gradle
 	dependencies {
-	        compile 'com.github.Andy671:PianoChartView:0.6.2'
+		compile 'com.github.Andy671:PianoChartView:0.6.2'
 	}
 ```
 
 # Usage
+### Creating from xml:
 
+In your <b>layout.xml</b>
+```xml
+xmlns:custom="http://schemas.android.com/apk/res-auto"
+```
 
-See sample for more examples
+```xml
+<!-- Custom arguments are optional - if you don't override them it uses default values -->
+ <com.kekstudio.pianochartview.PianoChartView
+        android:id="@+id/piano_chart_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+	
+       	custom:checkedKeysColor="@android:color/white"
+       	custom:lightKeysColor="@color/colorCustomLight"
+        custom:darkKeysColor="@color/colorCustomDark"
+        custom:size="Small"
+        custom:checkedKeys="@array/some_integer_array"/>
+```
+In your <b>arrays.xml</b>
+```xml
+<!-- Numbers = keys on keyboard -->
+    <integer-array name="some_integer_array">
+        <item>5</item>
+        <item>7</item>
+        <item>11</item>
+        <item>1</item>
+    </integer-array>
+```
+
+In your <b>colors.xml</b>
+```xml
+    <color name="colorCustomLight">#C8E6C9</color>
+    <color name="colorCustomDark">#1B5E20</color>
+```
+
+### Editing from code:
+```java
+ 	PianoChartView pianoChartView = (PianoChartView) findViewById(R.id.piano_chart_view_small);
+	pianoChartView.setCheckedKeys(new int[]{2, 5, 3, 8, 11, 12});
+	pianoChartView.setSize(PianoChartView.Size.Small);
+	pianoChartView.setLightKeysColor(Color.parseColor("#CFD8DC"));
+	pianoChartView.setDarkKeysColor(Color.parseColor("#607D8B"));
+	pianoChartView.setCheckedKeysColor(Color.parseColor("#B2EBF2"));
+```
+
+See sample for more info
 
 ## XML Attributes
 | Attribute        | Type                | Default      |
