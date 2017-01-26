@@ -6,7 +6,8 @@
 ## Introduction
 Android Piano Chart View for music theory / music apps 
 
-## Demo
+## Sample
+<iframe src='https://gfycat.com/ifr/FearfulClutteredCormorant' frameborder='0' scrolling='no' width='640' height='1138' allowfullscreen></iframe>
 
 ## Installation
 
@@ -58,6 +59,10 @@ See sample for more examples
 | int           | getDarkKeysColor()              |
 | int           | getCheckedKeysColor()           |
 
+
+## Contribution
+- Feel free to fork the repo, make pull requests or fix existing bug
+- Feel free to open issues if you find some bug or unexpected behaviour
 
 ## Buy me a cup of coffee
 > Bitcoin Wallet: 15BuUMAW2jUdStPVkoNPt85P8tJnAy5vD4
