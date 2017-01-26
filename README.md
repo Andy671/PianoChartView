@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 ## Introduction
-Android Piano Chart View for music theory / music apps 
+Elementary and clean Android View for displaying piano chord and scale charts in music theory apps for pianists.
 
 ## Sample
 ![](http://i.giphy.com/vuaHfrpkTbwOc.gif)
