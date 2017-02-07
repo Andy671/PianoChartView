@@ -26,7 +26,7 @@ Add the JitPack repository to your build file
 Add the dependency
 ```gradle
 	dependencies {
-		compile 'com.github.Andy671:PianoChartView:0.6.2'
+		compile 'com.github.Andy671:PianoChartView:v0.6.4'
 	}
 ```
 
@@ -44,7 +44,7 @@ xmlns:custom="http://schemas.android.com/apk/res-auto"
         android:id="@+id/piano_chart_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-	
+
        	custom:checkedKeysColor="@android:color/white"
        	custom:lightKeysColor="@color/colorCustomLight"
         custom:darkKeysColor="@color/colorCustomDark"
