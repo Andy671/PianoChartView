@@ -234,13 +234,13 @@ public class PianoChartView extends View {
     private int measureWidth(int measureSpec) {
         int preferredWidth = (int) (size == Size.Large ? DEFAULT_LARGE_WIDTH * densityScale : DEFAULT_LARGE_WIDTH * densityScale / 2);
 
-        return getMeasurement(measureSpec, preferredWidth);
+        return getMeasurement(measureSpec, preferredWidth) + getPaddingRight() + getPaddingLeft();
     }
 
     private int measureHeight(int measureSpec) {
         int preferredHeight = (int) (DEFAULT_LARGE_HEIGHT * densityScale);
 
-        return getMeasurement(measureSpec, preferredHeight);
+        return getMeasurement(measureSpec, preferredHeight) + getPaddingTop() + getPaddingBottom();
     }
 
     private int getMeasurement(int measureSpec, int preferred) {
