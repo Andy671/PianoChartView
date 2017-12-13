@@ -20,17 +20,17 @@ public class PianoChartView extends View {
     public static final int DEFAULT_STROKE_WIDTH = 2;
     public static final int DEFAULT_SIZE = 1;
 
-    public static final int BLACK_KEYS_COUNT_SMALL = 12;
+    public static final int ALL_KEYS_COUNT_SMALL = 12;
     public static final int WHITE_KEYS_COUNT_SMALL = 7;
 
-    public static final int BLACK_KEYS_COUNT_LARGE = 24;
+    public static final int ALL_KEYS_COUNT_LARGE = 24;
     public static final int WHITE_KEYS_COUNT_LARGE = 14;
 
     public static final int DEFAULT_CHECKED_KEYS_COLOR = Color.parseColor("#03A9F4");
     public static final int DEFAULT_DARK_KEYS_COLOR = Color.DKGRAY;
     public static final int DEFAULT_LIGHT_KEYS_COLOR = Color.WHITE;
 
-    public static final int DARK_KEYS[] = {2, 4, 7, 9, 11, 14, 16, 19, 21, 23};
+    public static final int DARK_KEYS[] = {1, 3, 6, 8, 10, 13, 15, 18, 20, 22};
 
     private Paint pianoFillPaint, pianoStrokePaint, pianoLetterPaint;
     private Rect pianoRect;
@@ -43,8 +43,6 @@ public class PianoChartView extends View {
     private List<String> keyLetters;
 
     private int  lightColor, darkColor, checkedColor;
-
-    private boolean showLettersEnabled = false;
 
     public enum Size{
         Small, Large
@@ -67,13 +65,19 @@ public class PianoChartView extends View {
         setLightKeysColor(attributes.getColor(  R.styleable.PianoChartView_lightKeysColor,       DEFAULT_LIGHT_KEYS_COLOR));
         setDarkKeysColor(attributes.getColor(   R.styleable.PianoChartView_darkKeysColor,        DEFAULT_DARK_KEYS_COLOR));
         setCheckedKeysColor(attributes.getColor(R.styleable.PianoChartView_checkedKeysColor,     DEFAULT_CHECKED_KEYS_COLOR));
+        setNamesOfKeys("C", "", "D", "", "E", "F","","G","G#/Ab","A","A#/Bb","B","C",
+                "C#/Db", "D", "D#/Eb", "E", "F","F#/Gb","G","G#/Ab","A","A#/Bb","B");
 
         setSize(Size.values()[attributes.getInt(R.styleable.PianoChartView_size,                 DEFAULT_SIZE)]);
 
         int checkedKeysArray = attributes.getResourceId(R.styleable.PianoChartView_checkedKeys, 0);
-
         if (checkedKeysArray != 0) {
             setCheckedKeys(getResources().getIntArray(checkedKeysArray));
+        }
+
+        int namesOfKeysArray = attributes.getResourceId(R.styleable.PianoChartView_namesOfKeys, 0);
+        if(namesOfKeysArray != 0){
+            setNamesOfKeys(getResources().getStringArray(namesOfKeysArray));
         }
 
         attributes.recycle();
@@ -102,10 +106,8 @@ public class PianoChartView extends View {
         pianoLetterPaint = new Paint();
         pianoLetterPaint.setAntiAlias(true);
         pianoLetterPaint.setStyle(Paint.Style.FILL);
-
-        pianoLetterPaint.setColor(Color.BLACK);
         pianoLetterPaint.setTextSize(10*densityScale);
-        //TODO
+        pianoLetterPaint.setTextAlign(Paint.Align.CENTER);
     }
 
     public void setCheckedKeys(int[] numbers) {
@@ -151,13 +153,6 @@ public class PianoChartView extends View {
         invalidate();
     }
 
-    public void setShowLetters(boolean enabled){
-        showLettersEnabled = enabled;
-
-        requestLayout();
-        invalidate();
-    }
-
     public int[] getCheckedKeys(){
         return listToInts(checkedKeys);
     }
@@ -178,10 +173,6 @@ public class PianoChartView extends View {
         return checkedColor;
     }
 
-    public boolean isShowLettersEnabled(){
-        return showLettersEnabled;
-    }
-
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -198,13 +189,12 @@ public class PianoChartView extends View {
         int cWidth = getWidth() - pRight - pLeft;
         int cHeight = getHeight() - pBottom - pTop;
 
-
-        int blackKeysCount = size == Size.Large ? BLACK_KEYS_COUNT_LARGE : BLACK_KEYS_COUNT_SMALL;
+        int allKeysCount = size == Size.Large ? ALL_KEYS_COUNT_LARGE : ALL_KEYS_COUNT_SMALL;
         int whiteKeysCount = size == Size.Large ? WHITE_KEYS_COUNT_LARGE : WHITE_KEYS_COUNT_SMALL;
 
         //Drawing light(white) keys
         int k = 0;
-        for(int i = 1; i<=blackKeysCount; i++){
+        for(int i = 0; i < allKeysCount; i++){
             if(blackKeys.contains(i))
                 continue;
             if(checkedKeys.contains(i)){
@@ -218,10 +208,10 @@ public class PianoChartView extends View {
             canvas.drawRect(pianoRect, pianoFillPaint);
             canvas.drawRect(pianoRect, pianoStrokePaint);
 
-            if(showLettersEnabled) {
+            if(i < keyLetters.size()) {
                 pianoLetterPaint.setColor(Color.BLACK);
                 canvas.drawText(keyLetters.get(i),
-                        pLeft + (k * cWidth / whiteKeysCount + (k + 1) * cWidth / whiteKeysCount) / 2 - pianoLetterPaint.getTextSize() / 3,
+                        pLeft + (k * cWidth / whiteKeysCount + (k + 1) * cWidth / whiteKeysCount) / 2,
                         pTop + cHeight / 1.1f, pianoLetterPaint);
             }
             k++;
@@ -230,7 +220,7 @@ public class PianoChartView extends View {
 
         //Drawing dark(black) keys
         k = 0;
-        for(int i = 1; i<=blackKeysCount; i++){
+        for(int i = 0; i < allKeysCount; i++){
             if(!blackKeys.contains(i)) {
                 k++;
                 continue;
@@ -246,10 +236,10 @@ public class PianoChartView extends View {
             canvas.drawRect(pianoRect, pianoFillPaint);
             canvas.drawRect(pianoRect, pianoStrokePaint);
 
-            if(showLettersEnabled) {
+            if(i < keyLetters.size()) {
                 pianoLetterPaint.setColor(Color.WHITE);
                 canvas.drawText(keyLetters.get(i),
-                        pLeft + k * cWidth / whiteKeysCount - pianoLetterPaint.getTextSize() / 1.7f,
+                        pLeft + k * cWidth / whiteKeysCount,
                         pTop + cHeight / 2.6f, pianoLetterPaint);
             }
         }
