@@ -3,8 +3,13 @@
     <declare-styleable name="PianoChartView">
         <attr name="lightKeysColor"      format="color" />
         <attr name="darkKeysColor"       format="color" />
+
         <attr name="checkedKeysColor"    format="color" />
         <attr name="checkedKeys"         format="reference"/>
+
+        <attr name="additionalCheckedKeysColor"    format="color" />
+        <attr name="additionalCheckedKeys"         format="reference"/>
+
         <attr name="namesOfKeys"         format="reference"/>
         <attr name="size"                format="enum">
             <enum name="Small" value="0"/>

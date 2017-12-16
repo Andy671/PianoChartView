@@ -39,10 +39,11 @@ public class PianoChartView extends View {
 
     private List<Integer> blackKeys;
     private List<Integer> checkedKeys;
+    private List<Integer> additionalCheckedKeys;
 
     private List<String> keyLetters;
 
-    private int  lightColor, darkColor, checkedColor;
+    private int  lightColor, darkColor, checkedColor, additionalCheckedColor;
 
     public enum Size{
         Small, Large
@@ -65,14 +66,18 @@ public class PianoChartView extends View {
         setLightKeysColor(attributes.getColor(  R.styleable.PianoChartView_lightKeysColor,       DEFAULT_LIGHT_KEYS_COLOR));
         setDarkKeysColor(attributes.getColor(   R.styleable.PianoChartView_darkKeysColor,        DEFAULT_DARK_KEYS_COLOR));
         setCheckedKeysColor(attributes.getColor(R.styleable.PianoChartView_checkedKeysColor,     DEFAULT_CHECKED_KEYS_COLOR));
-        setNamesOfKeys("C", "", "D", "", "E", "F","","G","G#/Ab","A","A#/Bb","B","C",
-                "C#/Db", "D", "D#/Eb", "E", "F","F#/Gb","G","G#/Ab","A","A#/Bb","B");
+        setAdditionalCheckedKeysColor(attributes.getColor(R.styleable.PianoChartView_additionalCheckedKeysColor,     DEFAULT_CHECKED_KEYS_COLOR));
 
         setSize(Size.values()[attributes.getInt(R.styleable.PianoChartView_size,                 DEFAULT_SIZE)]);
 
         int checkedKeysArray = attributes.getResourceId(R.styleable.PianoChartView_checkedKeys, 0);
         if (checkedKeysArray != 0) {
             setCheckedKeys(getResources().getIntArray(checkedKeysArray));
+        }
+
+        int additionalCheckedKeysArray = attributes.getResourceId(R.styleable.PianoChartView_additionalCheckedKeys, 0);
+        if (additionalCheckedKeysArray != 0) {
+            setAdditionalCheckedKeys(getResources().getIntArray(additionalCheckedKeysArray));
         }
 
         int namesOfKeysArray = attributes.getResourceId(R.styleable.PianoChartView_namesOfKeys, 0);
@@ -88,6 +93,7 @@ public class PianoChartView extends View {
         blackKeys = intsToList(DARK_KEYS);
 
         checkedKeys = new ArrayList<>();
+        additionalCheckedKeys = new ArrayList<>();
         keyLetters = new ArrayList<>();
 
         densityScale = getResources().getDisplayMetrics().density;
@@ -112,6 +118,13 @@ public class PianoChartView extends View {
 
     public void setCheckedKeys(int[] numbers) {
         checkedKeys = intsToList(numbers);
+
+        requestLayout();
+        invalidate();
+    }
+
+    public void setAdditionalCheckedKeys(int[] numbers){
+        additionalCheckedKeys = intsToList(numbers);
 
         requestLayout();
         invalidate();
@@ -153,9 +166,18 @@ public class PianoChartView extends View {
         invalidate();
     }
 
+    public void setAdditionalCheckedKeysColor(int color){
+        additionalCheckedColor = color;
+
+        requestLayout();
+        invalidate();
+    }
+
     public int[] getCheckedKeys(){
         return listToInts(checkedKeys);
     }
+
+    public int[] getAdditionalCheckedKeys(){return listToInts(additionalCheckedKeys);}
 
     public Size getSize(){
         return size;
@@ -172,6 +194,8 @@ public class PianoChartView extends View {
     public int getCheckedKeysColor(){
         return checkedColor;
     }
+
+    public int getAdditionalCheckedKeysColor(){return additionalCheckedColor; }
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -199,6 +223,8 @@ public class PianoChartView extends View {
                 continue;
             if(checkedKeys.contains(i)){
                 pianoFillPaint.setColor(checkedColor);
+            }else if (additionalCheckedKeys.contains(i)) {
+                pianoFillPaint.setColor(additionalCheckedColor);
             }else{
                 pianoFillPaint.setColor(lightColor);
             }
@@ -227,6 +253,8 @@ public class PianoChartView extends View {
             }
             if(checkedKeys.contains(i)){
                 pianoFillPaint.setColor(checkedColor);
+            }else if (additionalCheckedKeys.contains(i)) {
+                pianoFillPaint.setColor(additionalCheckedColor);
             }else{
                 pianoFillPaint.setColor(darkColor);
             }
