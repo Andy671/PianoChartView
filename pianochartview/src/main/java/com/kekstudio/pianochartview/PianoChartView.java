@@ -221,10 +221,10 @@ public class PianoChartView extends View {
         for(int i = 0; i < allKeysCount; i++){
             if(blackKeys.contains(i))
                 continue;
-            if(checkedKeys.contains(i)){
-                pianoFillPaint.setColor(checkedColor);
-            }else if (additionalCheckedKeys.contains(i)) {
+            if (additionalCheckedKeys.contains(i)) {
                 pianoFillPaint.setColor(additionalCheckedColor);
+            }else if(checkedKeys.contains(i)){
+                pianoFillPaint.setColor(checkedColor);
             }else{
                 pianoFillPaint.setColor(lightColor);
             }
@@ -251,10 +251,10 @@ public class PianoChartView extends View {
                 k++;
                 continue;
             }
-            if(checkedKeys.contains(i)){
-                pianoFillPaint.setColor(checkedColor);
-            }else if (additionalCheckedKeys.contains(i)) {
+            if(additionalCheckedKeys.contains(i)){
                 pianoFillPaint.setColor(additionalCheckedColor);
+            }else if (checkedKeys.contains(i)) {
+                pianoFillPaint.setColor(checkedColor);
             }else{
                 pianoFillPaint.setColor(darkColor);
             }
