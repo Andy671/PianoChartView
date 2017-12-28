@@ -26,7 +26,7 @@ Add the JitPack repository to your build file
 Add the dependency
 ```gradle
 	dependencies {
-		compile 'com.github.Andy671:PianoChartView:v0.6.4'
+		compile 'com.github.Andy671:PianoChartView:v0.6.6'
 	}
 ```
 
@@ -86,7 +86,10 @@ See sample for more info
 | lightKeysColor   | color               | Color.WHITE  |
 | darkKeysColor    | color               | Color.DKGRAY |
 | checkedKeysColor | color               | #03A9F4      |
+| additionalCheckedKeysColor | color     | #03A9F4      |
 | checkedKeys      | reference (int[])   | { }          |
+| additionalCheckedKeys      | reference (int[])   | { }          |
+| namesOfKeys      | reference (String[])   | { }          |
 | size             | enum [Large, Small] | Large        |
 
 
@@ -94,20 +97,22 @@ See sample for more info
 | Type          | Method                          |
 |--------------------- |--------------------------------|
 | void          | setCheckedKeys(int[] numbers)   |
+| void          | setAdditionalCheckedKeys(int[] numbers)   |
+| void          | setNamesOfKeys(String... keyLetters)  |
 | void          | setSize(Size size)              |
 | void          | setLightKeysColor(int color)    |
 | void          | setDarkKeysColor(int color)     |
 | void          | setCheckedKeysColor(int color)  |
+| void          | setAdditionalCheckedKeysColor(int color)  |
 | int[]         | getCheckedKeys()                |
+| int[]         | getAdditionalCheckedKeys()                |
 | Size          | getSize()                       |
 | int           | getLightKeysColor()             |
 | int           | getDarkKeysColor()              |
 | int           | getCheckedKeysColor()           |
+| int           | getAdditionalCheckedKeysColor()           |
 
 
 ## Contribution
 - Feel free to fork the repo, make pull requests or fix existing bug
 - Feel free to open issues if you find some bug or unexpected behaviour
-
-## Buy me a cup of coffee
-> Bitcoin Wallet: 15BuUMAW2jUdStPVkoNPt85P8tJnAy5vD4
